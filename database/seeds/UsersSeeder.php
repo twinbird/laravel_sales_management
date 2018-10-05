@@ -18,8 +18,13 @@ class UsersSeeder extends Seeder
 			'password' => Hash::make('password'),
 			'remember_token' => str_random(10),
 		]);
-
-		// 20ユーザダミーを作る
+		App\User::create([
+			'name' => '別ユーザ',
+			'email' => 'other@example.com',
+			'password' => Hash::make('password'),
+			'remember_token' => str_random(10),
+		]);
+		// ダミーユーザーを20作成
 		factory(App\User::class, 20)->create();
     }
 }

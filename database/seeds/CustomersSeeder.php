@@ -30,5 +30,11 @@ class CustomersSeeder extends Seeder
 			'fax' => '090-9876-5432',
 			'payment_term' => '月末締め翌月15日払い',
 		]);
+
+		// 別ユーザの顧客を30作成
+		$other_user_id = App\User::where('email', 'other@example.com')->first()->id;
+		factory(App\Customer::class, 30)->create([
+			'user_id' => $other_user_id,
+		]);
     }
 }
