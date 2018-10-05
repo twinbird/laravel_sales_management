@@ -40,7 +40,7 @@
 							<a class="nav-link">見積</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link">顧客</a>
+							<a class="nav-link" href="{{ url('/customers') }}">顧客</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link">商品</a>
