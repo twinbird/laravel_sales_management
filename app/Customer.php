@@ -11,12 +11,22 @@ class Customer extends Model
 		'name', 'address1', 'address2', 'tel', 'fax', 'payment_term',
 	];
 
+	protected static function boot()
+	{
+		parent::boot();
+
+		static::addGlobalScope('my_customers', function($builder) {
+			$builder->where('user_id', auth()->id());
+		});
+	}
+
 	/**
 	 * 所属するユーザ
 	 *
 	 * @var array
 	 */
-	public function user() {
+	public function user()
+	{
 		return $this->belongsTo('App\User');
 	}
 }
