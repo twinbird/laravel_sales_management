@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	/**
+	 * 顧客へのリレーション
+	 *
+	 * @var array
+	 */
+	public function customers() {
+		return $this->hasMany('App\Customer');
+	}
 }
