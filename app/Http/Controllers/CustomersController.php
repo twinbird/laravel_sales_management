@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -13,7 +14,11 @@ class CustomersController extends Controller
      */
     public function index()
     {
-		return view('customers.index');
+		$customers = Customer::paginate(15);
+		$params = [
+			'customers' => $customers,
+		];
+		return view('customers.index', $params);
     }
 
     /**
