@@ -40,7 +40,7 @@
 							<a class="nav-link">見積</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ url('/customers') }}">顧客</a>
+							<a class="nav-link" href="{{ route('customers.index') }}">顧客</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link">商品</a>
@@ -87,6 +87,9 @@
         </nav>
 
         <main class="py-4">
+			@if (Session::has('message'))
+				<div class="alert alert-info">{{ session('message') }}</div>
+			@endif
             @yield('content')
         </main>
     </div>

@@ -49,7 +49,10 @@ class CustomersController extends Controller
 		$customer->user_id = auth()->id();
 		$customer->save();
 
-		return redirect('/customers')->withInput();
+		return redirect()
+			->route('customers.index')
+			->withInput()
+			->with('message', '登録しました');
     }
 
     /**
@@ -92,7 +95,10 @@ class CustomersController extends Controller
 		$customer = Customer::find($id);
 		$customer->fill($request->all())->save();
 
-		return redirect('/customers')->withInput();
+		return redirect()
+			->route('customers.show', ['id' => $id])
+			->withInput()
+			->with('message', '更新しました');
     }
 
     /**
@@ -106,6 +112,8 @@ class CustomersController extends Controller
 		$customer = Customer::find($id);
 		$customer->delete();
 
-		return redirect('/customers');
+		return redirect()
+			->route('customers.index')
+			->with('message', '削除しました');
     }
 }
