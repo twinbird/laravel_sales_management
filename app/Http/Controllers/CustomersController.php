@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCustomerRequest;
 
 class CustomersController extends Controller
 {
@@ -18,6 +19,7 @@ class CustomersController extends Controller
 		$params = [
 			'customers' => $customers,
 		];
+
 		return view('customers.index', $params);
     }
 
@@ -28,7 +30,10 @@ class CustomersController extends Controller
      */
     public function create()
     {
-		return view('customers.create');
+		$customer = new Customer;
+		$params = ['customer' => $customer];
+
+		return view('customers.create', $params);
     }
 
     /**
@@ -37,9 +42,14 @@ class CustomersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
-        //
+		$customer = new Customer;
+		$customer->fill($request->all());
+		$customer->user_id = auth()->id();
+		$customer->save();
+
+		return redirect('/customers')->withInput();
     }
 
     /**
@@ -50,7 +60,10 @@ class CustomersController extends Controller
      */
     public function show($id)
     {
-        //
+		$customer = Customer::find($id);
+		$params = ['customer' => $customer];
+
+		return view('customers.show', $params);
     }
 
     /**
@@ -61,7 +74,10 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
-		view('customers.edit');
+		$customer = Customer::find($id);
+		$params = ['customer' => $customer];
+
+		return view('customers.edit', $params);
     }
 
     /**
@@ -71,9 +87,12 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCustomerRequest $request, $id)
     {
-        //
+		$customer = Customer::find($id);
+		$customer->fill($request->all())->save();
+
+		return redirect('/customers')->withInput();
     }
 
     /**
@@ -84,6 +103,9 @@ class CustomersController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$customer = Customer::find($id);
+		$customer->delete();
+
+		return redirect('/customers');
     }
 }

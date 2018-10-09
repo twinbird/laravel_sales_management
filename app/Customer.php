@@ -8,7 +8,7 @@ class Customer extends Model
 {
     // for mass assignment
 	protected $fillable = [
-		'name', 'address1', 'address2', 'tel', 'fax', 'payment_term',
+		'name', 'address1', 'address2', 'tel', 'fax', 'payment_term', 'user_id',
 	];
 
 	protected static function boot()
