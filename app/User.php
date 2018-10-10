@@ -33,7 +33,18 @@ class User extends Authenticatable
 	 *
 	 * @var array
 	 */
-	public function customers() {
+	public function customers()
+	{
 		return $this->hasMany('App\Customer');
+	}
+
+	/**
+	 * 商品へのリレーション
+	 *
+	 * @var array
+	 */
+	public function products()
+	{
+		return $this->hasMany('App\Product');
 	}
 }
