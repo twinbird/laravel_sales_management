@@ -20,7 +20,7 @@ class CustomersController extends Controller
      */
     public function index()
     {
-		$customers = Customer::paginate(15);
+		$customers = Customer::orderBy('name', 'asc')->paginate(15);
 		$params = [
 			'customers' => $customers,
 		];
