@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 	// for mass assignment
-	protected fillable = [
+	protected $fillable = [
 		'name', 'standard_price',
 	];
 

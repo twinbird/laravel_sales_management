@@ -43,7 +43,7 @@
 							<a class="nav-link" href="{{ route('customers.index') }}">顧客</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link">商品</a>
+							<a class="nav-link" href="{{ route('products.index') }}">商品</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link">設定</a>
