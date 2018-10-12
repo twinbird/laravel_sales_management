@@ -9,6 +9,14 @@ use App\User;
 
 class ProductCRUDTest extends TestCase
 {
+	protected $user;
+
+	public function setUp()
+	{
+		parent::setUp();
+		$this->user = factory(User::class)->create();
+	}
+
     public function testRedirectLoginPageAccessByNoLoginUser()
     {
 		$response = $this->get('/products');
@@ -17,9 +25,15 @@ class ProductCRUDTest extends TestCase
 
 	public function testListingProducts()
 	{
-		$user = factory(User::class)->create();
-		$response = $this->actingAs($user)
+		$response = $this->actingAs($this->user)
 						 ->get('/products');
+		$response->assertOk();
+	}
+
+	public function testCreateProductPage()
+	{
+		$response = $this->actingAs($this->user)
+						 ->get('/products/create');
 		$response->assertOk();
 	}
 }
