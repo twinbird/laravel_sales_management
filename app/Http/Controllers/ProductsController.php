@@ -31,7 +31,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+		$product = new Product;
+		return view('products.create', compact('product'));
     }
 
     /**
