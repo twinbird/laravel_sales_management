@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductsController extends Controller
 {
@@ -41,9 +42,17 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+		$product = new Product;
+		$product->fill($request->all());
+		$product->user_id = auth()->id();
+		$product->save();
+
+		return redirect()
+			->route('products.index')
+			->withInput()
+			->with('message', '登録しました');
     }
 
     /**
