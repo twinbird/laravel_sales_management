@@ -63,7 +63,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+		$product = Product::find($id);
+
+		return view('products.show', compact('product'));
     }
 
     /**
@@ -106,6 +108,11 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$product = Product::find($id);
+		$product->delete();
+
+		return redirect()
+				->route('products.index')
+				->with('message', '削除しました');
     }
 }
