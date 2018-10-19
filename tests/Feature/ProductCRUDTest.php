@@ -37,15 +37,6 @@ class ProductCRUDTest extends TestCase
 		$response->assertSee('新しい商品の登録', 'a');
 	}
 
-	public function testSeeProductNameOnListingPage()
-	{
-		$response = $this->actingAs($this->user)
-							->get('/products');
-		$response->assertOk();
-		$first_product = $this->user->products->sortBy('name')->take(1)->first();
-		$response->assertSee($first_product->name);
-	}
-
 	public function testSeeEditButtonOnListingPage()
 	{
 		$response = $this->actingAs($this->user)
@@ -62,7 +53,7 @@ class ProductCRUDTest extends TestCase
 		$response->assertSee('削除');
 	}
 
-	public function testCreateProductPage()
+	public function testAccessCreateProductPage()
 	{
 		$response = $this->actingAs($this->user)
 						 ->get('/products/create');
@@ -70,7 +61,7 @@ class ProductCRUDTest extends TestCase
 		$response->assertSee('登録');
 	}
 
-	public function testEditProductPage()
+	public function testAccessEditProductPage()
 	{
 		$response = $this->actingAs($this->user)
 							->get(route('products.edit', ['id' => $this->product->id]));
@@ -78,7 +69,7 @@ class ProductCRUDTest extends TestCase
 		$response->assertSee('更新');
 	}
 
-	public function testShowProductPage()
+	public function testAccessShowProductPage()
 	{
 		$response = $this->actingAs($this->user)
 							->get(route('products.show', ['id' => $this->product->id]));
