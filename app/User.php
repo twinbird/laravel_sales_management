@@ -47,4 +47,14 @@ class User extends Authenticatable
 	{
 		return $this->hasMany('App\Product');
 	}
+
+	/**
+	 * 設定情報へのリレーション
+	 *
+	 * @var Profile
+	 */
+	public function profile()
+	{
+		return $this->hasOne('App\Profile');
+	}
 }
