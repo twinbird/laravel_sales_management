@@ -8,7 +8,7 @@ class Profile extends Model
 {
 	// for mass assginment
 	protected $fillable = [
-		'user_id', 'postal_code', 'address1', 'address2', 'tel', 'fax',
+		'user_id', 'company_name', 'postal_code', 'address1', 'address2', 'tel', 'fax',
 	];
 
 	protected static function boot()

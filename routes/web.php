@@ -19,3 +19,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('customers', 'CustomersController');
 Route::resource('products', 'ProductsController');
+Route::resource('profiles', 'ProfilesController', ['only' => ['edit', 'update']]);

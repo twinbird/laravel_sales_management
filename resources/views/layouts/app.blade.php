@@ -46,7 +46,7 @@
 							<a class="nav-link" href="{{ route('products.index') }}">商品</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link">設定</a>
+							<a class="nav-link" href="{{ route('profiles.edit', ['id' => Auth::id()]) }}">設定</a>
 						</li>
                     </ul>
 
