@@ -6,6 +6,7 @@
 
 	<div class="row float-right">
 		<a href="{{ route('products.create') }}" class="btn btn-primary mb-2">新しい商品の登録</a>
+		<a href="{{ route('products.download_csv') }}" class="btn btn-info mb-2">CSV</a>
 	</div>
 
 	<table class="table">

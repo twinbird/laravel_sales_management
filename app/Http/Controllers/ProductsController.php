@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Requests\StoreProductRequest;
+use App\Facades\CSV;
 
 class ProductsController extends Controller
 {
@@ -115,4 +116,19 @@ class ProductsController extends Controller
 				->route('products.index')
 				->with('message', '削除しました');
     }
+
+    /**
+     * Download a listing of the resource by CSV.
+     *
+     * @return \Illuminate\Http\Response
+     */
+	public function download_csv()
+	{
+		$products = Product::orderBy('name', 'asc')
+			->get(['name', 'standard_price'])
+			->toArray();
+		$headers = ['商品名', '標準単価'];
+
+		return CSV::download($products, $headers, 'products_list.csv');
+	}
 }
