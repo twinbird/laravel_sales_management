@@ -32,6 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+					@if (Auth::check())
                     <ul class="navbar-nav mr-auto">
 						<li class="nav-item">
 							<a class="nav-link">ホーム</a>
@@ -49,6 +50,7 @@
 							<a class="nav-link" href="{{ route('profiles.edit', ['id' => Auth::user()->profile->id]) }}">設定</a>
 						</li>
                     </ul>
+					@endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
