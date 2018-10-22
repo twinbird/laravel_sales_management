@@ -57,4 +57,24 @@ class User extends Authenticatable
 	{
 		return $this->hasOne('App\Profile');
 	}
+
+	/**
+	 * 見積
+	 *
+	 * @var array
+	 **/
+	public function estimates()
+	{
+		return $this->hasMany('App\Estimate');
+	}
+
+	/**
+	 * 見積明細
+	 *
+	 * @var array
+	 **/
+	public function estimate_details()
+	{
+		return $this->hasMany('App\EstimateDetail');
+	}
 }
