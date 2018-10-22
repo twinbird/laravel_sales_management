@@ -38,7 +38,7 @@ class Estimate extends Model
 	 *
 	 * @var array
 	 **/
-	public function estimates()
+	public function estimate_details()
 	{
 		return $this->hasMany('App\EstimateDetail');
 	}
