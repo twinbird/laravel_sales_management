@@ -14,6 +14,10 @@ class Estimate extends Model
 		'self_fax', 'self_pic', 'tax_rate', 'total_price', 'remarks',
 	];
 
+	protected $dates = [
+		'issue_date',
+	];
+
 	protected static function boot()
 	{
 		parent::boot();
@@ -31,6 +35,16 @@ class Estimate extends Model
 	public function user()
 	{
 		return $this->belongsTo('App\User');
+	}
+
+	/**
+	 * 顧客
+	 *
+	 * @var Customer
+	 **/
+	public function customer()
+	{
+		return $this->belongsTo('App\Customer');
 	}
 
 	/**

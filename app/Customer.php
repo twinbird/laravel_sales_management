@@ -29,4 +29,14 @@ class Customer extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
+
+	/**
+	 * 作成された見積
+	 *
+	 * @var array
+	 **/
+	public function estimates()
+	{
+		return $this->hasMany('App\Estimate');
+	}
 }
