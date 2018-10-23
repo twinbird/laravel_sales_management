@@ -29,4 +29,21 @@ class Customer extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
+
+	/**
+	 * 検索ワードでのフィルタ
+	 *
+	 * @var query
+	 **/
+	public function scopeSearchWordFilter($query, ?string $search_word)
+	{
+		if (is_null($search_word)) {
+			return $query;
+		}
+		$query->where('name', 'like', '%' . $search_word . '%')
+				->orWhere('address1', 'like', '%' . $search_word . '%')
+				->orWhere('address2', 'like', '%' . $search_word . '%')
+				->orWhere('tel', 'like', '%' . $search_word . '%')
+				->orWhere('fax', 'like', '%' . $search_word . '%');
+	}
 }

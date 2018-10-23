@@ -8,7 +8,16 @@
 		<a class="btn btn-primary mb-2" href="{{ url('/customers/create') }}">新しい顧客を登録</a>
 	</div>
 
-	<table class="table">
+	<div class="col-sm-5">
+		<form class="form-inline" action="{{ route('customers.index') }}" method="GET">
+			<div class="form-group">
+				<input type="text" name="search_word" value="{{ $search_word }}" class="form-control form-control-sm" placeholder="検索ワードをここに入力">
+			</div>
+			<input type="submit" value="検索" class="btn btn-primary btn-sm">
+		</form>
+	</div>
+
+	<table class="table table-sm">
 		<tr>
 			<th>顧客名</th>
 			<th>住所</th>
