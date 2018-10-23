@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="col-sm-5">
-		<form class="form-inline" action="" method="GET">
+		<form class="form-inline" action="{{ route('products.index') }}" method="GET">
 			<div class="form-group">
 				<input type="text" name="search_word" value="{{ $search_word }}" class="form-control form-control-sm" placeholder="検索ワードをここに入力">
 			</div>
