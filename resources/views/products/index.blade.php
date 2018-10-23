@@ -9,7 +9,27 @@
 		<a href="{{ route('products.download_csv') }}" class="btn btn-info mb-2">CSV</a>
 	</div>
 
-	<table class="table">
+	<div class="col-sm-5">
+		<form class="form-inline" action="" method="GET">
+			<div class="form-group">
+				<input type="text" name="search_word" value="{{ $search_word }}" class="form-control form-control-sm" placeholder="検索ワードをここに入力">
+			</div>
+			<input type="submit" value="検索" class="btn btn-primary btn-sm">
+
+			<fieldset class="form-group">
+				<dl>
+					<dt>標準単価</dt>
+					<dd>
+						<input type="number" name="search_min_standard_price" value="{{ $search_min_standard_price }}" class="form-control form-control-sm" placeholder="下限" step="0.001">
+						～
+						<input type="number" name="search_max_standard_price" value="{{ $search_max_standard_price }}" class="form-control form-control-sm" placeholder="上限" step="0.001">
+					</dd>
+				</dl>
+			</fieldset>
+		</form>
+	</div>
+
+	<table class="table table-sm">
 		<tr>
 			<th>商品名</th>
 			<th>標準単価</th>

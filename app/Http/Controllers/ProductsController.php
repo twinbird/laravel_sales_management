@@ -19,11 +19,22 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-		$products = Product::orderBy('name', 'asc')->paginate(15);
+		$search_word = $request->input('search_word');
+		$search_max_standard_price = $request->input('search_max_standard_price');
+		$search_min_standard_price = $request->input('search_min_standard_price');
 
-		return view('products.index', compact('products'));
+		$products = Product::nameFilter($search_word)
+					->maxStandardPriceFilter($search_max_standard_price)
+					->minStandardPriceFilter($search_min_standard_price)
+					->orderBy('name', 'asc')
+					->paginate(15);
+
+		return view('products.index', compact('products'))
+				->with('search_word', $search_word)
+				->with('search_max_standard_price', $search_max_standard_price)
+				->with('search_min_standard_price', $search_min_standard_price);
     }
 
     /**
