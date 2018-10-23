@@ -38,7 +38,7 @@
 							<a class="nav-link">ホーム</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link">見積</a>
+							<a class="nav-link" href="{{ route('estimates.index') }}">見積</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('customers.index') }}">顧客</a>
