@@ -21,5 +21,6 @@ $factory->define(App\Estimate::class, function (Faker $faker) {
 		'tax_rate' => $faker->randomDigit,
 		'total_price' => $faker->randomDigit,
 		'remarks' => $faker->text,
+		'submitted_flag' => $faker->boolean,
     ];
 });
