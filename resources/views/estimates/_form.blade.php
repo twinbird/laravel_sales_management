@@ -60,8 +60,8 @@
 </div>
 
 <table class="table table-sm">
-	<tr class="row">
-		<th class="col-md-3 normal-th">商品</th>
+	<tr class="row normal-weight-th-row">
+		<th class="col-md-3">商品</th>
 		<th class="col-md-3">商品名</th>
 		<th class="col-md-1">数量</th>
 		<th class="col-md-1">単価</th>
@@ -69,7 +69,7 @@
 		<th class="col-md-1"></th>
 	</tr>
 	<tr class="row">
-		<td class="col-md-3">
+		<td class="col-md-3 normal-weight-th">
 			<select>
 				<option></option>
 			</select>
