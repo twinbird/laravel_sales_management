@@ -5,7 +5,7 @@
 	<h2>顧客情報の管理</h2>
 
 	<div class="row float-right">
-		<a class="btn btn-primary mb-2" href="{{ url('/customers/create') }}">新しい顧客を登録</a>
+		<a class="btn btn-primary btn-sm mb-2" href="{{ url('/customers/create') }}">新しい顧客を登録</a>
 	</div>
 
 	<div class="col-sm-5">
@@ -32,12 +32,12 @@
 			<td>{{ $customer->address1 }}</td>
 			<td>{{ $customer->tel }}</td>
 			<td>{{ $customer->fax }}</td>
-			<td><a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-info">編集</a></td>
+			<td><a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-sm btn-info">編集</a></td>
 			<td>
 				<form method="POST" action="{{ route('customers.destroy', ['id' => $customer->id]) }}">
 					@csrf
 					@method('delete')
-					<input type="submit" value="削除" onclick="return confirm('削除してよろしいですか?')" class="btn btn-danger" />
+					<input type="submit" value="削除"onclick="return confirm('削除してよろしいですか?')" class="btn btn-sm btn-danger" />
 				</form>
 			</td>
 		</tr>
