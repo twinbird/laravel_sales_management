@@ -5,8 +5,8 @@
 	<h2>商品の管理</h2>
 
 	<div class="row float-right">
-		<a href="{{ route('products.create') }}" class="btn btn-primary mb-2">新しい商品の登録</a>
-		<a href="{{ route('products.download_csv') }}" class="btn btn-info mb-2">CSV</a>
+		<a href="{{ route('products.create') }}" class="btn btn-sm btn-primary mb-2">新しい商品の登録</a>
+		<a href="{{ route('products.download_csv') }}" class="btn btn-sm btn-success mb-2">CSV</a>
 	</div>
 
 	<div class="col-sm-5">
@@ -40,12 +40,12 @@
 		<tr>
 			<td><a href="{{ route('products.show', ['id' => $product->id]) }}">{{ $product->name }}</a></td>
 			<td>{{ $product->standard_price }}</td>
-			<td><a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-info">編集</a></td>
+			<td><a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-sm btn-info">編集</a></td>
 			<td>
 				<form method="POST" action="{{ route('products.destroy', ['id' => $product->id]) }}">
 					@csrf
 					@method('delete')
-					<input type="submit" value="削除" onClick="return confirm('削除してよろしいですか?')" class="btn btn-danger">
+					<input type="submit" value="削除" onClick="return confirm('削除してよろしいですか?')" class="btn btn-sm btn-danger">
 				</form>
 			</td>
 		</tr>
