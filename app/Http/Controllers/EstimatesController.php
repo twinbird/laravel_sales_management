@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Estimate;
+use App\Customer;
+use App\Product;
 
 class EstimatesController extends Controller
 {
@@ -32,7 +34,11 @@ class EstimatesController extends Controller
      */
     public function create()
     {
-		return view('estimates.create');
+		$estimate = new Estimate;
+		$customers = Customer::all();
+		$products = Product::all();
+
+		return view('estimates.create', compact('estimate', 'customers', 'products'));
     }
 
     /**
