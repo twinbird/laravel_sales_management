@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Estimate;
 use App\Customer;
 use App\Product;
+use App\Http\Requests\StoreEstimateRequest;
 
 class EstimatesController extends Controller
 {
@@ -47,7 +48,7 @@ class EstimatesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEstimateRequest $request)
     {
 		return redirect()
 				->route('estimates.index')

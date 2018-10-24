@@ -51,12 +51,13 @@
 	<div class="form-group col-md-6 row">
 		<label for="effective_date" class="col-sm-3 col-form-label">見積有効期限</label>
 		<div class="col-sm-5">
-			<input type="date" id="effective_date" class="form-control form-control-sm">
+			<input type="date" name="effective_date" value="{{ old('effective_date', $estimate->effective_date) }}" id="effective_date" class="form-control form-control-sm">
 		</div>
 	</div>
 	<div class="form-group col-md-6 row">
 		<div class="col-sm-4 btn-group-toggle row" data-toggle="buttons">
-			<label for="submitted_flag" class="btn btn-outline-success"><input type="checkbox" name="submitted_flag" value="true" @if(old('submitted_flag', $estimate->submitted_flag)) === 'true') checked @endif id="submitted_flag">提出済み</label>
+			<input type="hidden" name="submitted_flag" name="submitted_flag" value="false">
+			<label for="submitted_flag" class="btn btn-outline-success @if(old('submitted_flag', $estimate->submitted_flag) == 'true') active @endif"><input type="checkbox" name="submitted_flag" value="true" @if(old('submitted_flag', $estimate->submitted_flag) == 'true') checked="checked" @endif id="submitted_flag">提出済み</label>
 		</div>
 	</div>
 </div>
@@ -89,6 +90,6 @@
 <div class="row">
 	<label for="remarks">備考</label>
 	<div class="form-group col-md-12">
-		<textarea id="remarks" class="form-control" rows="5">{{ old('remarks', $estimate->remarks) }}</textarea>
+		<textarea name="remarks" id="remarks" class="form-control" rows="5">{{ old('remarks', $estimate->remarks) }}</textarea>
 	</div>
 </div>
