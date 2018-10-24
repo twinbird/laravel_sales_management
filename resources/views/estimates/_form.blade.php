@@ -24,7 +24,7 @@
 	</div>
 	<div class="form-group col-md-6 row">
 		<label for="issue_date" class="col-sm-3 col-form-label">発行日</label>
-		<div class="col-sm-9">
+		<div class="col-sm-5">
 			<input type="date" id="issue_date" class="form-control form-control-sm">
 		</div>
 	</div>
@@ -64,19 +64,19 @@
 		<th class="col-md-3">商品</th>
 		<th class="col-md-3">商品名</th>
 		<th class="col-md-1">数量</th>
-		<th class="col-md-1">単価</th>
+		<th class="col-md-2">単価</th>
 		<th class="col-md-2">金額</th>
 		<th class="col-md-1"></th>
 	</tr>
 	<tr class="row">
 		<td class="col-md-3 normal-weight-th">
-			<select>
+			<select class="form-control form-control-sm">
 				<option></option>
 			</select>
 		</td>
 		<td class="col-md-3"><input type="text" class="form-control form-control-sm"></td>
 		<td class="col-md-1"><input type="number" class="form-control form-control-sm"></td>
-		<td class="col-md-1"><input type="number" class="form-control form-control-sm" step="0.001"></td>
+		<td class="col-md-2"><input type="number" class="form-control form-control-sm" step="0.001"></td>
 		<td class="col-md-2"><input type="number" class="form-control form-control-sm" step="0.001"></td>
 		<td class="col-md-1"><a class="btn btn-danger btn-sm">削除</a></td>
 	</tr>
