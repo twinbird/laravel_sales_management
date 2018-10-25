@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $customer->name)
+
 @section('content')
 <div class="container">
 	<h2>{{ $customer->name }}</h2>

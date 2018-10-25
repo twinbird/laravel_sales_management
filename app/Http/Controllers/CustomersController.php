@@ -18,14 +18,16 @@ class CustomersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-		$customers = Customer::orderBy('name', 'asc')->paginate(15);
+		$search_word = $request->input('search_word');
+		$customers = Customer::searchWordFilter($search_word)
+						->orderBy('name', 'asc')->paginate(15);
 		$params = [
 			'customers' => $customers,
 		];
 
-		return view('customers.index', $params);
+		return view('customers.index', $params)->with('search_word', $search_word);
     }
 
     /**
