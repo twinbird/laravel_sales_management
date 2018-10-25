@@ -35,9 +35,6 @@
 					@if (Auth::check())
                     <ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link">ホーム</a>
-						</li>
-						<li class="nav-item">
 							<a class="nav-link">見積</a>
 						</li>
 						<li class="nav-item">
