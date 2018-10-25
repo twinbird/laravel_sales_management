@@ -8,7 +8,6 @@
 
 	<div class="row float-right">
 		<a href="{{ route('products.create') }}" class="btn btn-primary mb-2">新しい商品の登録</a>
-		<a href="{{ route('products.download_csv') }}" class="btn btn-info mb-2">CSV</a>
 	</div>
 
 	<div class="col-sm-5">
@@ -16,7 +15,8 @@
 			<div class="form-group">
 				<input type="text" name="search_word" value="{{ $search_word }}" class="form-control form-control-sm" placeholder="検索ワードをここに入力">
 			</div>
-			<input type="submit" value="検索" class="btn btn-primary btn-sm">
+			<input type="submit" name="submit_btn" value="検索" class="btn btn-primary btn-sm">
+			<input type="submit" name="submit_btn" value="CSV" class="btn btn-success btn-sm">
 
 			<fieldset class="form-group">
 				<dl>
