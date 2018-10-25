@@ -19,3 +19,4 @@ Auth::routes();
 Route::resource('customers', 'CustomersController');
 Route::resource('products', 'ProductsController');
 Route::resource('profiles', 'ProfilesController', ['only' => ['edit', 'update']]);
+Route::resource('estimates', 'EstimatesController');

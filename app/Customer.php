@@ -31,6 +31,16 @@ class Customer extends Model
 	}
 
 	/**
+	 * 作成された見積
+	 *
+	 * @var array
+	 **/
+	public function estimates()
+	{
+		return $this->hasMany('App\Estimate');
+  }
+  
+  /**
 	 * 検索ワードでのフィルタ
 	 *
 	 * @var query
