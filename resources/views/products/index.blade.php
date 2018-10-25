@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '商品の管理')
+
 @section('content')
 <div class="container">
 	<h2>商品の管理</h2>
@@ -14,7 +16,8 @@
 			<div class="form-group">
 				<input type="text" name="search_word" value="{{ $search_word }}" class="form-control form-control-sm" placeholder="検索ワードをここに入力">
 			</div>
-			<input type="submit" value="検索" class="btn btn-primary btn-sm">
+			<input type="submit" name="submit_btn" value="検索" class="btn btn-primary btn-sm">
+			<input type="submit" name="submit_btn" value="CSV" class="btn btn-success btn-sm">
 
 			<fieldset class="form-group">
 				<dl>

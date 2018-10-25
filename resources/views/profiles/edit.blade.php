@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'ユーザ設定')
+
 @section('content')
 <div class="container">
 	<h2>ユーザ設定</h2>

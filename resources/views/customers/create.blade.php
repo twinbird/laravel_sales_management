@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '新しい顧客の登録')
+
 @section('content')
 <div class="container">
 

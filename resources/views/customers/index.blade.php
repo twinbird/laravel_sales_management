@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '顧客情報の管理')
+
 @section('content')
 <div class="container">
 	<h2>顧客情報の管理</h2>
