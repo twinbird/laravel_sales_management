@@ -41,13 +41,13 @@
 							<a class="nav-link">見積</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('customers.index') }}">顧客</a>
+							<a class="nav-link {{ Request::is('customers', 'customers/*') ? 'active' : '' }}" href="{{ route('customers.index') }}">顧客</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('products.index') }}">商品</a>
+							<a class="nav-link {{ Request::is('products', 'products/*') ? 'active' : '' }}" href="{{ route('products.index') }}">商品</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('profiles.edit', ['id' => Auth::user()->profile->id]) }}">設定</a>
+							<a class="nav-link {{ Request::is('profiles', 'profiles/*') ? 'active' : '' }}" href="{{ route('profiles.edit', ['id' => Auth::user()->profile->id]) }}">設定</a>
 						</li>
                     </ul>
 					@endif
