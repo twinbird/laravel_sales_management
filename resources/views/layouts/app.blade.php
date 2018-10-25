@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', '見積管理システム') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@
 					@if (Auth::check())
                     <ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link {{ Request::is('customers', 'customers/*') ? 'active' : '' }}" href="{{ route('estimates.index') }}">見積</a>
+							<a class="nav-link {{ Request::is('estimates', 'estimates/*') ? 'active' : '' }}" href="{{ route('estimates.index') }}">見積</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link {{ Request::is('customers', 'customers/*') ? 'active' : '' }}" href="{{ route('customers.index') }}">顧客</a>
