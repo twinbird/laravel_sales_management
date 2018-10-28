@@ -50,8 +50,14 @@ class EstimatesController extends Controller
      */
     public function store(StoreEstimateRequest $request)
     {
+		$estimate = new Estimate;
+		$estimate->fill($request->all());
+		$estimate->user_id = auth()->id();
+		$estimate->save();
+
 		return redirect()
 				->route('estimates.index')
+				->withInput()
 				->with('message', '登録しました');
     }
 

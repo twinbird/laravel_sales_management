@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Customer;
 
 class Estimate extends Model
 {
@@ -24,6 +25,31 @@ class Estimate extends Model
 
 		static::addGlobalScope('my_estimates', function($builder) {
 			$builder->where('user_id', auth()->id());
+		});
+
+		/*
+		 * before saving
+		 */
+		self::saving(function($model)
+		{
+			$now = new DateTime;
+			$now_str = $now->format('YmdHis');
+
+			$//customer = Customer::find($model->customer_id);
+			$profile = Auth()->user()->profile();
+
+			//$model->customer_name = $customer->name;
+			$model->estimate_no = $now_str;
+			$model->self_company_name = $profile->company_name;
+			$model->self_postal_code = $profile->postal_code;
+			$model->self_address1 = $profile->address1;
+			$model->self_address2 = $profile->address2;
+			$model->self_tel = $profile->tel;
+			$model->self_fax = $profile->fax;
+
+			// TODO
+			$model->total_price = 0;
+			$model->tax_rate = 0.0;
 		});
 	}
 
