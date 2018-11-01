@@ -82,4 +82,17 @@ class Estimate extends Model
 	{
 		return $this->hasMany('App\EstimateDetail');
 	}
+
+	/**
+	 * 検索フィルタ
+	 *
+	 **/
+	public function scopeSearchWordFilter($query, ?string $search_word)
+	{
+		if (is_null($search_word)) {
+			return $query;
+		}
+		$query->where('title', 'like', '%' . $search_word . '%')
+				->orWhere('customer_name', 'like', '%' . $search_word . '%');
+	}
 }

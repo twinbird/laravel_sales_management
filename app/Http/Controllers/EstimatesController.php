@@ -21,11 +21,12 @@ class EstimatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-		$estimates = Estimate::orderBy('created_at', 'desc')->paginate(15);
+		$search_word = $request->input('search_word');
+		$estimates = Estimate::searchWordFilter($search_word)->orderBy('created_at', 'desc')->paginate(15);
 
-		return view('estimates.index', compact('estimates'));
+		return view('estimates.index', compact('estimates'))->with('search_word', $search_word);
     }
 
     /**

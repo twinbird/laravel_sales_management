@@ -10,6 +10,15 @@
 		<a href="{{ route('estimates.create') }}" class="btn btn-primary mb-2 btn-sm">新しい見積の作成</a>
 	</div>
 
+	<div class="col-sm-5">
+		<form class="form-inline" action="{{ route('estimates.index') }}" method="GET">
+			<div class="form-group">
+				<input type="text" name="search_word" value="{{ $search_word }}" class="form-control form-control-sm" placeholder="検索ワードをここに入力">
+			</div>
+			<input type="submit" value="検索" class="btn btn-primary btn-sm">
+		</form>
+	</div>
+
 	<table class="table table-sm">
 		<tr>
 			<th>顧客名</th>
