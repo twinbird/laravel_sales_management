@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'StaticPagesController@rootPage');
 
 Auth::routes();
 Route::resource('customers', 'CustomersController');
