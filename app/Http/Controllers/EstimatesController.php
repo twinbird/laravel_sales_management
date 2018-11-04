@@ -115,6 +115,9 @@ class EstimatesController extends Controller
      */
     public function destroy($id)
     {
+		$estimate = Estimate::find($id);
+		$estimate->delete();
+
 		return redirect()
 				->route('estimates.index')
 				->with('message', '削除しました');
