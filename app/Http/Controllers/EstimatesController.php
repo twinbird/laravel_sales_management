@@ -81,7 +81,11 @@ class EstimatesController extends Controller
      */
     public function edit($id)
     {
-		return view('estimates.edit');
+		$estimate = Estimate::find($id);
+		$customers = Customer::all();
+		$products = Product::all();
+
+		return view('estimates.edit', compact('estimate', 'customers', 'products'));
     }
 
     /**
@@ -91,8 +95,13 @@ class EstimatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEstimateRequest $request, $id)
     {
+		$estimate = Estimate::find($id);
+		$estimate->fill($request->all());
+		$estimate->user_id = auth()->id();
+		$estimate->save();
+
 		return redirect()
 				->route('estimates.index')
 				->with('message', '更新しました');

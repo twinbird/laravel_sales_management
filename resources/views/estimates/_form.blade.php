@@ -27,7 +27,7 @@
 	<div class="form-group col-md-6 row">
 		<label for="issue_date" class="col-sm-3 col-form-label">発行日</label>
 		<div class="col-sm-5">
-			<input type="date" name="issue_date" value="{{ old('issue_date', $estimate->issue_date) }}" id="issue_date" class="form-control form-control-sm">
+			<input type="date" name="issue_date" value="{{ old('issue_date', $estimate->issue_date->toDateString()) }}" id="issue_date" class="form-control form-control-sm">
 		</div>
 	</div>
 </div>
