@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Customer;
+use Carbon\Carbon;
 
 class Estimate extends Model
 {
 	// for mass assignment
 	protected $fillable = [
-		'user_id', 'estimate_no', 'title', 'issue_date', 'due_date',
+		'user_id', 'estimate_no', 'title', 'issue_date', 'due_date', 'customer_id',
 		'effective_date', 'payment_term', 'customer_name', 'self_company_name',
 		'self_postal_code', 'self_address1', 'self_address2', 'self_tel',
-		'self_fax', 'self_pic', 'tax_rate', 'total_price', 'remarks',
+		'self_fax', 'tax_rate', 'remarks', 'submitted_flag',
 	];
 
 	protected $dates = [
@@ -32,13 +33,13 @@ class Estimate extends Model
 		 */
 		self::saving(function($model)
 		{
-			$now = new DateTime;
+			$now = Carbon::now();
 			$now_str = $now->format('YmdHis');
 
-			$//customer = Customer::find($model->customer_id);
-			$profile = Auth()->user()->profile();
+			$customer = Customer::find($model->customer_id);
+			$profile = Auth()->user()->profile()->first();
 
-			//$model->customer_name = $customer->name;
+			$model->customer_name = $customer->name;
 			$model->estimate_no = $now_str;
 			$model->self_company_name = $profile->company_name;
 			$model->self_postal_code = $profile->postal_code;
@@ -46,6 +47,7 @@ class Estimate extends Model
 			$model->self_address2 = $profile->address2;
 			$model->self_tel = $profile->tel;
 			$model->self_fax = $profile->fax;
+			$model->self_pic = Auth()->user()->id;
 
 			// TODO
 			$model->total_price = 0;

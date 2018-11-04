@@ -56,8 +56,8 @@
 	</div>
 	<div class="form-group col-md-6 row">
 		<div class="col-sm-4 btn-group-toggle row" data-toggle="buttons">
-			<input type="hidden" name="submitted_flag" name="submitted_flag" value="false">
-			<label for="submitted_flag" class="btn btn-outline-success @if(old('submitted_flag', $estimate->submitted_flag) == 'true') active @endif"><input type="checkbox" name="submitted_flag" value="true" @if(old('submitted_flag', $estimate->submitted_flag) == 'true') checked="checked" @endif id="submitted_flag">提出済み</label>
+			<input type="hidden" name="submitted_flag" name="submitted_flag" value="0">
+			<label for="submitted_flag" class="btn btn-outline-success @if(old('submitted_flag', $estimate->submitted_flag) == '1') active @endif"><input type="checkbox" name="submitted_flag" value="1" @if(old('submitted_flag', $estimate->submitted_flag) == '1') checked="checked" @endif id="submitted_flag">提出済み</label>
 		</div>
 	</div>
 </div>
