@@ -73,16 +73,16 @@
 	</tr>
 	<tr class="row">
 		<td class="col-md-3 normal-weight-th">
-			<select name="product_id" id="product_id[]" class="form-control form-control-sm">
+			<select name="details[0][product_id]" id="product_id[]" class="form-control form-control-sm">
 				@foreach ($products as $product)
 				<option value="{{ $product->id }}">{{ $product->name }}</option>
 				@endforeach
 			</select>
 		</td>
-		<td class="col-md-3"><input type="text" name="product_name[]" value="" id="product_name-1" class="form-control form-control-sm"></td>
-		<td class="col-md-1"><input type="number" name="quantity[]" value="" id="quantity-1" class="form-control form-control-sm"></td>
-		<td class="col-md-2"><input type="number" name="unit_price[]" value="" id="unit_price-1" class="form-control form-control-sm" step="0.001"></td>
-		<td class="col-md-2"><input type="number" name="price[]" value="" id="price-1" class="form-control form-control-sm" step="0.001"></td>
+		<td class="col-md-3"><input type="text" name="details[0][product_name]" value="" id="product_name-1" class="form-control form-control-sm"></td>
+		<td class="col-md-1"><input type="number" name="details[0][quantity]" value="" id="quantity-1" class="form-control form-control-sm"></td>
+		<td class="col-md-2"><input type="number" name="details[0][unit_price]" value="" id="unit_price-1" class="form-control form-control-sm" step="0.001"></td>
+		<td class="col-md-2"><input type="number" name="details[0][price]" value="" id="price-1" class="form-control form-control-sm" step="0.001"></td>
 		<td class="col-md-1"><a class="btn btn-danger btn-sm">削除</a></td>
 	</tr>
 </table>

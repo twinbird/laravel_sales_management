@@ -7,6 +7,7 @@ use App\Estimate;
 use App\Customer;
 use App\Product;
 use App\Http\Requests\StoreEstimateRequest;
+use Illuminate\Support\Facades\DB;
 
 class EstimatesController extends Controller
 {
@@ -51,10 +52,19 @@ class EstimatesController extends Controller
      */
     public function store(StoreEstimateRequest $request)
     {
-		$estimate = new Estimate;
-		$estimate->fill($request->all());
-		$estimate->user_id = auth()->id();
-		$estimate->save();
+		DB::beginTransaction();
+		try {
+			$estimate = new Estimate;
+			$estimate->fill($request->all());
+			$estimate->user_id = auth()->id();
+			$estimate->save();
+			$estimate->estimate_details()->createMany($request->get('details', []));
+
+		} catch (Exception $e) {
+			DB::rollback();
+			return back()->withInput();
+		}
+		DB::commit();
 
 		return redirect()
 				->route('estimates.index')
