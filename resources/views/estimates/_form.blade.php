@@ -77,7 +77,9 @@
 		@foreach ($estimate_details as $detail)
 		<tr class="row">
 			<td class="col-md-3 normal-weight-th">
+				<!-- id -->
 				<input type="hidden" name="details[{{ $detail->id }}][id]" id="details[{{ $detail->id }}][id]" value="{{ $detail->id }}">
+				<!-- product_id -->
 				<select name="details[{{ $detail->id }}][product_id]" id="product_id[{{ $detail->id }}][product_id]" class="form-control form-control-sm">
 					<option></option>
 					@foreach ($products as $product)
@@ -85,11 +87,46 @@
 					@endforeach
 				</select>
 			</td>
-			<td class="col-md-3"><input type="text" name="details[{{ $detail->id }}][product_name]" value="{{ old('details.' . $detail->id . '.product_name', $detail->product_name) }}" id="details[{{ $detail->id }}][product_name]" class="form-control form-control-sm"></td>
-			<td class="col-md-1"><input type="number" name="details[{{ $detail->id }}][quantity]" value="{{ old('details.' . $detail->id . '.quantity', $detail->quantity) }}" id="details[{{ $detail->id }}][quantity]" class="form-control form-control-sm"></td>
-			<td class="col-md-2"><input type="number" name="details[{{ $detail->id }}][unit_price]" value="{{ old('details.' . $detail->id . '.unit_price', $detail->unit_price) }}" id="details[{{ $detail->id }}][unit_price]" class="form-control form-control-sm" step="0.001"></td>
-			<td class="col-md-2"><input type="number" name="details[{{ $detail->id }}][price]" value="{{ old('details.' . $detail->id . '.price', $detail->price) }}" id="details[{{ $detail->id }}][price]" class="form-control form-control-sm" step="0.001"></td>
-			<td class="col-md-1"><a class="btn btn-danger btn-sm">削除</a><input type="hidden" name="details[{{ $detail->id }}][is_delete]" value="{{ old('details.' . $detail->id . '.is_delete') }}"></td>
+			<td class="col-md-3">
+				<!-- product_name -->
+				<input type="text"
+						name="details[{{ $detail->id }}][product_name]"
+						value="{{ old('details.' . $detail->id . '.product_name', $detail->product_name) }}"
+						id="details[{{ $detail->id }}][product_name]"
+						class="form-control form-control-sm">
+			</td>
+			<td class="col-md-1">
+				<!-- quantity -->
+				<input type="number"
+						name="details[{{ $detail->id }}][quantity]"
+						value="{{ old('details.' . $detail->id . '.quantity', $detail->quantity) }}"
+						id="details[{{ $detail->id }}][quantity]"
+						class="form-control form-control-sm">
+			</td>
+			<td class="col-md-2">
+				<!-- unit_price -->
+				<input type="number"
+						name="details[{{ $detail->id }}][unit_price]"
+						value="{{ old('details.' . $detail->id . '.unit_price', $detail->unit_price) }}"
+						id="details[{{ $detail->id }}][unit_price]"
+						class="form-control form-control-sm"
+						step="0.001">
+			</td>
+			<td class="col-md-2">
+				<!-- price -->
+				<input type="number"
+						name="details[{{ $detail->id }}][price]"
+						value="{{ old('details.' . $detail->id . '.price', $detail->price) }}"
+						id="details[{{ $detail->id }}][price]"
+						class="form-control form-control-sm"
+						step="0.001">
+			</td>
+			<td class="col-md-1">
+				<!-- delete link -->
+				<a class="btn btn-danger btn-sm">削除</a>
+				<!-- delete flag -->
+				<input type="hidden" name="details[{{ $detail->id }}][is_delete]" value="{{ old('details.' . $detail->id . '.is_delete') }}">
+			</td>
 		</tr>
 		@endforeach
 	</tbody>
