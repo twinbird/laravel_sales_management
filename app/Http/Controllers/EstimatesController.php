@@ -64,7 +64,9 @@ class EstimatesController extends Controller
 			$details_input = $request->get('details');
 			$details = [];
 			foreach ($details_input as $detail) {
-				$details[] = new EstimateDetail($detail);
+				if (!$detail['is_delete']) {
+					$details[] = new EstimateDetail($detail);
+				}
 			}
 			$estimate->estimate_details()->saveMany($details);
 		} catch (Exception $e) {
@@ -124,12 +126,18 @@ class EstimatesController extends Controller
 
 			$details_input = $request->get('details');
 			$details = [];
+			$delete_detail_ids = [];
 			foreach ($details_input as $detail_input) {
-				$detail = EstimateDetail::firstOrNew(['id' => $detail_input['id']]);
-				$detail->fill($detail_input);
-				$details[] = $detail;
+				if ($detail_input['is_delete']) {
+					$delete_detail_ids[] = $detail_input['id'];
+				} else {
+					$detail = EstimateDetail::firstOrNew(['id' => $detail_input['id']]);
+					$detail->fill($detail_input);
+					$details[] = $detail;
+				}
 			}
 			$estimate->estimate_details()->saveMany($details);
+			EstimateDetail::destroy($delete_detail_ids);
 		} catch (Exception $e) {
 			DB::rollback();
 			return back()->withInput();
