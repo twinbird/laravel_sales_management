@@ -8,17 +8,13 @@ class EstimateDetail extends Model
 {
 	// for mass assignment
 	protected $fillable = [
-		'user_id', 'estimate_id', 'product_name',
+		'estimate_id', 'product_name', 'product_id',
 		'unit_price', 'quantity', 'price',
 	];
 
 	protected static function boot()
 	{
 		parent::boot();
-
-		static::addGlobalScope('my_estimate_details', function($builder) {
-			$builder->where('user_id', auth()->id());
-		});
 	}
 
 	/**

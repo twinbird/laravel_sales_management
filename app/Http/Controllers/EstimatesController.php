@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Estimate;
+use App\EstimateDetail;
 use App\Customer;
 use App\Product;
 use App\Http\Requests\StoreEstimateRequest;
@@ -38,10 +39,11 @@ class EstimatesController extends Controller
     public function create()
     {
 		$estimate = new Estimate;
+		$estimate_details = [];
 		$customers = Customer::all();
 		$products = Product::all();
 
-		return view('estimates.create', compact('estimate', 'customers', 'products'));
+		return view('estimates.create', compact('estimate', 'estimate_details', 'customers', 'products'));
     }
 
     /**
@@ -58,8 +60,13 @@ class EstimatesController extends Controller
 			$estimate->fill($request->all());
 			$estimate->user_id = auth()->id();
 			$estimate->save();
-			$estimate->estimate_details()->createMany($request->get('details', []));
 
+			$details_input = $request->get('details');
+			$details = [];
+			foreach ($details_input as $detail) {
+				$details[] = new EstimateDetail($detail);
+			}
+			$estimate->estimate_details()->saveMany($details);
 		} catch (Exception $e) {
 			DB::rollback();
 			return back()->withInput();
@@ -92,10 +99,11 @@ class EstimatesController extends Controller
     public function edit($id)
     {
 		$estimate = Estimate::find($id);
+		$estimate_details = $estimate->estimate_details()->get();
 		$customers = Customer::all();
 		$products = Product::all();
 
-		return view('estimates.edit', compact('estimate', 'customers', 'products'));
+		return view('estimates.edit', compact('estimate', 'estimate_details', 'customers', 'products'));
     }
 
     /**
@@ -107,10 +115,26 @@ class EstimatesController extends Controller
      */
     public function update(StoreEstimateRequest $request, $id)
     {
-		$estimate = Estimate::find($id);
-		$estimate->fill($request->all());
-		$estimate->user_id = auth()->id();
-		$estimate->save();
+		DB::beginTransaction();
+		try {
+			$estimate = Estimate::find($id);
+			$estimate->fill($request->all());
+			$estimate->user_id = auth()->id();
+			$estimate->save();
+
+			$details_input = $request->get('details');
+			$details = [];
+			foreach ($details_input as $detail_input) {
+				$detail = EstimateDetail::firstOrNew(['id' => $detail_input['id']]);
+				$detail->fill($detail_input);
+				$details[] = $detail;
+			}
+			$estimate->estimate_details()->saveMany($details);
+		} catch (Exception $e) {
+			DB::rollback();
+			return back()->withInput();
+		}
+		DB::commit();
 
 		return redirect()
 				->route('estimates.index')

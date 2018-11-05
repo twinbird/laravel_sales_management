@@ -63,28 +63,50 @@
 </div>
 
 <table class="table table-sm">
-	<tr class="row normal-weight-th-row">
-		<th class="col-md-3">商品</th>
-		<th class="col-md-3">商品名</th>
-		<th class="col-md-1">数量</th>
-		<th class="col-md-2">単価</th>
-		<th class="col-md-2">金額</th>
-		<th class="col-md-1"></th>
-	</tr>
-	<tr class="row">
-		<td class="col-md-3 normal-weight-th">
-			<select name="details[0][product_id]" id="product_id[]" class="form-control form-control-sm">
-				@foreach ($products as $product)
-				<option value="{{ $product->id }}">{{ $product->name }}</option>
-				@endforeach
-			</select>
-		</td>
-		<td class="col-md-3"><input type="text" name="details[0][product_name]" value="" id="product_name-1" class="form-control form-control-sm"></td>
-		<td class="col-md-1"><input type="number" name="details[0][quantity]" value="" id="quantity-1" class="form-control form-control-sm"></td>
-		<td class="col-md-2"><input type="number" name="details[0][unit_price]" value="" id="unit_price-1" class="form-control form-control-sm" step="0.001"></td>
-		<td class="col-md-2"><input type="number" name="details[0][price]" value="" id="price-1" class="form-control form-control-sm" step="0.001"></td>
-		<td class="col-md-1"><a class="btn btn-danger btn-sm">削除</a></td>
-	</tr>
+	<thead>
+		<tr class="row normal-weight-th-row">
+			<th class="col-md-3">商品</th>
+			<th class="col-md-3">商品名</th>
+			<th class="col-md-1">数量</th>
+			<th class="col-md-2">単価</th>
+			<th class="col-md-2">金額</th>
+			<th class="col-md-1"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach ($estimate_details as $detail)
+		<tr class="row">
+			<td class="col-md-3 normal-weight-th">
+				<input type="hidden" name="details[{{ $detail->id }}][id]" id="details[{{ $detail->id }}][id]" value="{{ $detail->id }}">
+				<select name="details[{{ $detail->id }}][product_id]" id="product_id[{{ $detail->id }}][product_id]" class="form-control form-control-sm">
+					@foreach ($products as $product)
+					<option value="{{ $product->id }}" {{ $detail->product_id === $product->id ? 'selected' : '' }}>{{ $product->name }}</option>
+					@endforeach
+				</select>
+			</td>
+			<td class="col-md-3"><input type="text" name="details[{{ $detail->id }}][product_name]" value="{{ $detail->product_name }}" id="details[{{ $detail->id }}][product_name]" class="form-control form-control-sm"></td>
+			<td class="col-md-1"><input type="number" name="details[{{ $detail->id }}][quantity]" value="{{ $detail->quantity }}" id="details[{{ $detail->id }}][quantity]" class="form-control form-control-sm"></td>
+			<td class="col-md-2"><input type="number" name="details[{{ $detail->id }}][unit_price]" value="{{ $detail->unit_price }}" id="details[{{ $detail->id }}][unit_price]" class="form-control form-control-sm" step="0.001"></td>
+			<td class="col-md-2"><input type="number" name="details[{{ $detail->id }}][price]" value="{{ $detail->price }}" id="details[{{ $detail->id }}][price]" class="form-control form-control-sm" step="0.001"></td>
+			<td class="col-md-1"><a class="btn btn-danger btn-sm">削除</a></td>
+		</tr>
+		@endforeach
+		<tr class="row">
+			<td class="col-md-3 normal-weight-th">
+				<input type="hidden" name="details[0][id]" id="details[0][id]" value="">
+				<select name="details[0][product_id]" id="product_id[0][product_id]" class="form-control form-control-sm">
+					@foreach ($products as $product)
+					<option value="{{ $product->id }}">{{ $product->name }}</option>
+					@endforeach
+				</select>
+			</td>
+			<td class="col-md-3"><input type="text" name="details[0][product_name]" value="" id="details[0][product_name]" class="form-control form-control-sm"></td>
+			<td class="col-md-1"><input type="number" name="details[0][quantity]" value="" id="details[0][quantity]" class="form-control form-control-sm"></td>
+			<td class="col-md-2"><input type="number" name="details[0][unit_price]" value="" id="details[0][unit_price]" class="form-control form-control-sm" step="0.001"></td>
+			<td class="col-md-2"><input type="number" name="details[0][price]" value="" id="details[0][price]" class="form-control form-control-sm" step="0.001"></td>
+			<td class="col-md-1"><a class="btn btn-danger btn-sm">削除</a></td>
+		</tr>
+	</tbody>
 </table>
 
 <div class="row">
