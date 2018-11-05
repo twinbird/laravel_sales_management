@@ -20,3 +20,20 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+$(function() {
+	// delete row
+	$('.delete-row-link').click(function() {
+		let ret = window.confirm('この行を削除しますか?');
+		if (ret === false) {
+			return;
+		}
+
+		// set delete flag
+		$(this).next('input').val(1);
+
+		// invisible row
+		$(this).closest('tr').hide();
+		console.log($(this).closest('tr'));
+	});
+});

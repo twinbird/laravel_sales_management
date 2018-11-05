@@ -13906,7 +13906,24 @@ window.Vue = __webpack_require__(36);
 Vue.component('example-component', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+	el: '#app'
+});
+
+$(function () {
+	// delete row
+	$('.delete-row-link').click(function () {
+		var ret = window.confirm('この行を削除しますか?');
+		if (ret === false) {
+			return;
+		}
+
+		// set delete flag
+		$(this).next('input').val(1);
+
+		// invisible row
+		$(this).closest('tr').hide();
+		console.log($(this).closest('tr'));
+	});
 });
 
 /***/ }),

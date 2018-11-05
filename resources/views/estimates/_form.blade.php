@@ -123,7 +123,7 @@
 			</td>
 			<td class="col-md-1">
 				<!-- delete link -->
-				<a class="btn btn-danger btn-sm">削除</a>
+				<a class="btn btn-danger btn-sm delete-row-link">削除</a>
 				<!-- delete flag -->
 				<input type="hidden" name="details[{{ $detail->id }}][is_delete]" value="{{ old('details.' . $detail->id . '.is_delete') }}">
 			</td>
