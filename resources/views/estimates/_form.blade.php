@@ -100,10 +100,10 @@
 					@endforeach
 				</select>
 			</td>
-			<td class="col-md-3"><input type="text" name="details[0][product_name]" value="" id="details[0][product_name]" class="form-control form-control-sm"></td>
-			<td class="col-md-1"><input type="number" name="details[0][quantity]" value="" id="details[0][quantity]" class="form-control form-control-sm"></td>
-			<td class="col-md-2"><input type="number" name="details[0][unit_price]" value="" id="details[0][unit_price]" class="form-control form-control-sm" step="0.001"></td>
-			<td class="col-md-2"><input type="number" name="details[0][price]" value="" id="details[0][price]" class="form-control form-control-sm" step="0.001"></td>
+			<td class="col-md-3"><input type="text" name="details[0][product_name]" value="{{ old('details.0.product_name') }}" id="details[0][product_name]" class="form-control form-control-sm"></td>
+			<td class="col-md-1"><input type="number" name="details[0][quantity]" value="{{ old('details.0.quantity') }}" id="details[0][quantity]" class="form-control form-control-sm"></td>
+			<td class="col-md-2"><input type="number" name="details[0][unit_price]" value="{{ old('details.0.unit_price') }}" id="details[0][unit_price]" class="form-control form-control-sm" step="0.001"></td>
+			<td class="col-md-2"><input type="number" name="details[0][price]" value="{{ old('details.0.price') }}" id="details[0][price]" class="form-control form-control-sm" step="0.001"></td>
 			<td class="col-md-1"><a class="btn btn-danger btn-sm">削除</a></td>
 		</tr>
 	</tbody>
