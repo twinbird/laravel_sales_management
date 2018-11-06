@@ -13922,7 +13922,13 @@ $(function () {
 
 		// invisible row
 		$(this).closest('tr').hide();
-		console.log($(this).closest('tr'));
+	});
+
+	// delete row hide
+	$('.delete-flag').each(function (idx, e) {
+		if ($(e).val() !== '') {
+			$(e).closest('tr').hide();
+		}
 	});
 });
 

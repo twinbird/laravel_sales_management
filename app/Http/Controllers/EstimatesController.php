@@ -42,8 +42,9 @@ class EstimatesController extends Controller
 		$estimate_details = [];
 		$customers = Customer::all();
 		$products = Product::all();
+		$row_counts = 10;
 
-		return view('estimates.create', compact('estimate', 'estimate_details', 'customers', 'products'));
+		return view('estimates.create', compact('estimate', 'estimate_details', 'customers', 'products', 'row_counts'));
     }
 
     /**
@@ -95,6 +96,7 @@ class EstimatesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+	 * @param  \Illuminate\Http\Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -104,8 +106,9 @@ class EstimatesController extends Controller
 		$estimate_details = $estimate->estimate_details()->get();
 		$customers = Customer::all();
 		$products = Product::all();
+		$row_counts = 10 - $estimate_details->count();
 
-		return view('estimates.edit', compact('estimate', 'estimate_details', 'customers', 'products'));
+		return view('estimates.edit', compact('estimate', 'estimate_details', 'customers', 'products', 'row_counts'));
     }
 
     /**

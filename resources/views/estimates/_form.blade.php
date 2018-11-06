@@ -129,6 +129,63 @@
 			</td>
 		</tr>
 		@endforeach
+
+		<input type="hidden" name="row_counts" value="1">
+		@for ($i = -1; $i >= -$row_counts; $i--)
+		<tr class="row">
+			<td class="col-md-3 normal-weight-th">
+				<!-- id -->
+				<input type="hidden" name="details[{{ $i }}][id]" id="details[{{ $i }}][id]" value="">
+				<!-- product_id -->
+				<select name="details[{{ $i }}][product_id]" id="product_id[{{ $i }}][product_id]" class="form-control form-control-sm">
+					<option></option>
+					@foreach ($products as $product)
+					<option value="{{ $product->id }}">{{ $product->name }}</option>
+					@endforeach
+				</select>
+			</td>
+			<td class="col-md-3">
+				<!-- product_name -->
+				<input type="text"
+						name="details[{{ $i }}][product_name]"
+						value="{{ old('details.' . $i . '.product_name') }}"
+						id="details[{{ $i }}][product_name]"
+						class="form-control form-control-sm">
+			</td>
+			<td class="col-md-1">
+				<!-- quantity -->
+				<input type="number"
+						name="details[{{ $i }}][quantity]"
+						value="{{ old('details.' . $i . '.quantity') }}"
+						id="details[{{ $i }}][quantity]"
+						class="form-control form-control-sm">
+			</td>
+			<td class="col-md-2">
+				<!-- unit_price -->
+				<input type="number"
+						name="details[{{ $i }}][unit_price]"
+						value="{{ old('details.' . $i . '.unit_price') }}"
+						id="details[{{ $i }}][unit_price]"
+						class="form-control form-control-sm"
+						step="0.001">
+			</td>
+			<td class="col-md-2">
+				<!-- price -->
+				<input type="number"
+						name="details[{{ $i }}][price]"
+						value="{{ old('details.' . $i . '.price') }}"
+						id="details[{{ $i }}][price]"
+						class="form-control form-control-sm"
+						step="0.001">
+			</td>
+			<td class="col-md-1">
+				<!-- delete link -->
+				<a class="btn btn-danger btn-sm delete-row-link">削除</a>
+				<!-- delete flag -->
+				<input type="hidden" name="details[{{ $i }}][is_delete]" value="{{ old('details.' . $i . '.is_delete') }}" class="delete-flag">
+			</td>
+		</tr>
+		@endfor
 	</tbody>
 </table>
 
