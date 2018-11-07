@@ -62,7 +62,9 @@
 	</div>
 </div>
 
-<table class="table table-sm">
+<input type="button" id="add-detail" class="btn btn-sm btn-primary float-right" value="明細を追加">
+
+<table id="detail-table" class="table table-sm">
 	<thead>
 		<tr class="row normal-weight-th-row">
 			<th class="col-md-3">商品</th>
@@ -73,7 +75,7 @@
 			<th class="col-md-1"></th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="detail-table-tbody">
 		@foreach ($estimate_details as $detail)
 		<tr class="row">
 			<td class="col-md-3 normal-weight-th">
@@ -130,14 +132,68 @@
 		</tr>
 		@endforeach
 
-		<input type="hidden" name="row_counts" value="1">
-		@for ($i = -1; $i >= -$row_counts; $i--)
+		@foreach ($dynamic_add_details as $detail)
 		<tr class="row">
 			<td class="col-md-3 normal-weight-th">
 				<!-- id -->
-				<input type="hidden" name="details[{{ $i }}][id]" id="details[{{ $i }}][id]" value="">
+				<input type="hidden" name="details[{{ $detail['id'] }}][id]" id="details[{{ $detail['id'] }}][id]" value="{{ $detail['id'] }}">
 				<!-- product_id -->
-				<select name="details[{{ $i }}][product_id]" id="product_id[{{ $i }}][product_id]" class="form-control form-control-sm">
+				<select name="details[{{ $detail['id'] }}][product_id]" id="product_id[{{ $detail['id'] }}][product_id]" class="form-control form-control-sm">
+					<option></option>
+					@foreach ($products as $product)
+					<option value="{{ $product->id }}" {{ $detail['product_id'] === $product->id ? 'selected' : '' }}>{{ $product->name }}</option>
+					@endforeach
+				</select>
+			</td>
+			<td class="col-md-3">
+				<!-- product_name -->
+				<input type="text"
+						name="details[{{ $detail['id'] }}][product_name]"
+						value="{{ $detail['product_name'] }}"
+						id="details[{{ $detail['id'] }}][product_name]"
+						class="form-control form-control-sm">
+			</td>
+			<td class="col-md-1">
+				<!-- quantity -->
+				<input type="number"
+						name="details[{{ $detail['id'] }}][quantity]"
+						value="{{ $detail['quantity'] }}"
+						id="details[{{ $detail['id'] }}][quantity]"
+						class="form-control form-control-sm">
+			</td>
+			<td class="col-md-2">
+				<!-- unit_price -->
+				<input type="number"
+						name="details[{{ $detail['id'] }}][unit_price]"
+						value="{{ $detail['unit_price'] }}"
+						id="details[{{ $detail['id'] }}][unit_price]"
+						class="form-control form-control-sm"
+						step="0.001">
+			</td>
+			<td class="col-md-2">
+				<!-- price -->
+				<input type="number"
+						name="details[{{ $detail['id'] }}][price]"
+						value="{{ $detail['price'] }}"
+						id="details[{{ $detail['id'] }}][price]"
+						class="form-control form-control-sm"
+						step="0.001">
+			</td>
+			<td class="col-md-1">
+				<!-- delete link -->
+				<a class="btn btn-danger btn-sm delete-row-link">削除</a>
+				<!-- delete flag -->
+				<input type="hidden" name="details[{{ $detail['id'] }}][is_delete]" value="{{ $detail['is_delete'] }}">
+			</td>
+		</tr>
+		@endforeach
+
+		<tr id="template-row-field" class="row">
+			<td class="col-md-3 normal-weight-th">
+				<!-- id -->
+				<input type="hidden" name="details[_INDEX_VARIABLE][id]" id="details[_INDEX_VARIABLE][id]" value="_INDEX_VARIABLE">
+				<!-- product_id -->
+				<select name="details[_INDEX_VARIABLE][product_id]" id="product_id[_INDEX_VARIABLE][product_id]" class="form-control form-control-sm">
 					<option></option>
 					@foreach ($products as $product)
 					<option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -147,34 +203,34 @@
 			<td class="col-md-3">
 				<!-- product_name -->
 				<input type="text"
-						name="details[{{ $i }}][product_name]"
-						value="{{ old('details.' . $i . '.product_name') }}"
-						id="details[{{ $i }}][product_name]"
+						name="details[_INDEX_VARIABLE][product_name]"
+						value=""
+						id="details[_INDEX_VARIABLE][product_name]"
 						class="form-control form-control-sm">
 			</td>
 			<td class="col-md-1">
 				<!-- quantity -->
 				<input type="number"
-						name="details[{{ $i }}][quantity]"
-						value="{{ old('details.' . $i . '.quantity') }}"
-						id="details[{{ $i }}][quantity]"
+						name="details[_INDEX_VARIABLE][quantity]"
+						value=""
+						id="details[_INDEX_VARIABLE][quantity]"
 						class="form-control form-control-sm">
 			</td>
 			<td class="col-md-2">
 				<!-- unit_price -->
 				<input type="number"
-						name="details[{{ $i }}][unit_price]"
-						value="{{ old('details.' . $i . '.unit_price') }}"
-						id="details[{{ $i }}][unit_price]"
+						name="details[_INDEX_VARIABLE][unit_price]"
+						value=""
+						id="details[_INDEX_VARIABLE][unit_price]"
 						class="form-control form-control-sm"
 						step="0.001">
 			</td>
 			<td class="col-md-2">
 				<!-- price -->
 				<input type="number"
-						name="details[{{ $i }}][price]"
-						value="{{ old('details.' . $i . '.price') }}"
-						id="details[{{ $i }}][price]"
+						name="details[_INDEX_VARIABLE][price]"
+						value=""
+						id="details[_INDEX_VARIABLE][price]"
 						class="form-control form-control-sm"
 						step="0.001">
 			</td>
@@ -182,10 +238,11 @@
 				<!-- delete link -->
 				<a class="btn btn-danger btn-sm delete-row-link">削除</a>
 				<!-- delete flag -->
-				<input type="hidden" name="details[{{ $i }}][is_delete]" value="{{ old('details.' . $i . '.is_delete') }}" class="delete-flag">
+				<input type="hidden" name="details[_INDEX_VARIABLE][is_delete]" value="1" class="delete-flag">
 			</td>
 		</tr>
-		@endfor
+
+		<input type="hidden" name="row_counts" value="0" id="row-counts">
 	</tbody>
 </table>
 
@@ -195,3 +252,5 @@
 		<textarea name="remarks" id="remarks" class="form-control" rows="5">{{ old('remarks', $estimate->remarks) }}</textarea>
 	</div>
 </div>
+
+

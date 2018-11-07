@@ -22,6 +22,8 @@ const app = new Vue({
 });
 
 $(function() {
+	var DETAIL_INDEX_VARIABLE = -1;
+
 	// delete row
 	$('.delete-row-link').click(function() {
 		let ret = window.confirm('この行を削除しますか?');
@@ -41,5 +43,28 @@ $(function() {
 		if ($(e).val() !== '') {
 			$(e).closest('tr').hide();
 		}
+	});
+
+	// add row
+	$('#add-detail').click(function() {
+		// clone template row tag
+		let row = $('#template-row-field').clone(true);
+		let raw_html = row.html();
+
+		// attach new detail id
+		raw_html = raw_html.replace(/_INDEX_VARIABLE/g, DETAIL_INDEX_VARIABLE);
+		DETAIL_INDEX_VARIABLE--;
+		row.html(raw_html);
+
+		// remove template id and attributes
+		row.attr('id', '');
+		row.show();
+		row.find('.delete-flag').first().val('');
+
+		// increments append row counts
+		$('#row-counts').val(Number($('#row-counts').val()) + 1);
+
+		// append to details
+		$('#detail-table-tbody').append(row);
 	});
 });

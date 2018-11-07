@@ -100,15 +100,24 @@ class EstimatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
 		$estimate = Estimate::find($id);
 		$estimate_details = $estimate->estimate_details()->get();
 		$customers = Customer::all();
 		$products = Product::all();
-		$row_counts = 10 - $estimate_details->count();
 
-		return view('estimates.edit', compact('estimate', 'estimate_details', 'customers', 'products', 'row_counts'));
+		// dynamic add detail old inputs
+		$dynamic_add_details = [];
+		if (old('details')) {
+			foreach (old('details') as $key => $detail) {
+				if (is_numeric($key) && $key < 0) {
+					$dynamic_add_details[] = $detail;
+				}
+			}
+		}
+
+		return view('estimates.edit', compact('estimate', 'estimate_details', 'customers', 'products', 'dynamic_add_details'));
     }
 
     /**
