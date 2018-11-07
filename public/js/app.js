@@ -13990,6 +13990,7 @@ $(function () {
 	$('.detail-quantity').change(calc_total_price);
 	$('.detail-unit-price').change(calc_total_price);
 	$('.detail-price').change(calc_total_price);
+	$('#tax_rate').change(calc_total_price);
 });
 
 /***/ }),
