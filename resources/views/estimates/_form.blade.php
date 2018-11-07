@@ -141,7 +141,7 @@
 				<select name="details[{{ $detail['id'] }}][product_id]" id="product_id[{{ $detail['id'] }}][product_id]" class="form-control form-control-sm">
 					<option></option>
 					@foreach ($products as $product)
-					<option value="{{ $product->id }}" {{ $detail['product_id'] === $product->id ? 'selected' : '' }}>{{ $product->name }}</option>
+					<option value="{{ $product->id }}" {{ $detail['product_id'] == $product->id ? 'selected' : '' }}>{{ $product->name }}</option>
 					@endforeach
 				</select>
 			</td>
