@@ -62,6 +62,21 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="form-group col-md-6 row">
+		<label for="total_price" class="col-sm-3 col-form-label">合計金額(税込)</label>
+		<div class="col-sm-9">
+			<input type="text" name="total_price" id="total_price" class="form-control form-control-sm" value="{{ old('total_price', $estimate->total_price) }}" disabled>
+		</div>
+	</div>
+	<div class="form-group col-md-6 row">
+		<label for="tax_rate" class="col-sm-3 col-form-label">消費税(%)</label>
+		<div class="col-sm-2">
+			<input type="number" name="tax_rate" id="tax_rate" class="form-control form-control-sm" value="{{ old('tax_rate', $estimate->tax_rate * 100) }}">
+		</div>
+	</div>
+</div>
+
 <input type="button" id="add-detail" class="btn btn-sm btn-primary float-right" value="明細を追加">
 
 <table id="detail-table" class="table table-sm">

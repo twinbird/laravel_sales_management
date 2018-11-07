@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class EstimatesController extends Controller
 {
-
 	public function __construct()
 	{
 		$this->middleware('auth');
@@ -53,6 +52,9 @@ class EstimatesController extends Controller
 				}
 			}
 		}
+
+		// set tax rate
+		$estimate->tax_rate = Estimate::DEFAULT_TAX_RATE;
 
 		return view('estimates.create', compact('estimate', 'estimate_details', 'customers', 'products', 'row_counts', 'dynamic_add_details'));
     }

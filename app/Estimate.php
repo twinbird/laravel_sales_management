@@ -8,6 +8,8 @@ use Carbon\Carbon;
 
 class Estimate extends Model
 {
+	const DEFAULT_TAX_RATE = '0.08';
+
 	// for mass assignment
 	protected $fillable = [
 		'user_id', 'estimate_no', 'title', 'issue_date', 'due_date', 'customer_id',
@@ -49,10 +51,19 @@ class Estimate extends Model
 			$model->self_fax = $profile->fax;
 			$model->self_pic = Auth()->user()->id;
 
-			// TODO
-			$model->total_price = 0;
-			$model->tax_rate = 0.0;
+			$model->tax_rate = $model->tax_rate / 100;
+			$model->total_price = $model->calc_price($model);
 		});
+	}
+
+	public function calc_price($model)
+	{
+		$total_price = 0;
+
+		foreach ($model->hasMany('App\EstimateDetail')->get() as $detail) {
+			$total_price += $detail->price;
+		}
+		return $total_price * (1 + $model->tax_rate);
 	}
 
 	/**
