@@ -19,7 +19,7 @@
 		<div class="col-sm-9">
 			<select class="form-control form-control-sm" name="customer_id" id="customer_id">
 				@foreach ($customers as $customer)
-				<option value="{{ $customer->id }}">{{ $customer->name }}</option>
+				<option value="{{ $customer->id }}" {{ $estimate->customer_id === $customer->id ? 'selected' : '' }}>{{ $customer->name }}</option>
 				@endforeach
 			</select>
 		</div>
