@@ -44,7 +44,17 @@ class EstimatesController extends Controller
 		$products = Product::all();
 		$row_counts = 10;
 
-		return view('estimates.create', compact('estimate', 'estimate_details', 'customers', 'products', 'row_counts'));
+		// dynamic add detail old inputs
+		$dynamic_add_details = [];
+		if (old('details')) {
+			foreach (old('details') as $key => $detail) {
+				if (is_numeric($key) && $key < 0) {
+					$dynamic_add_details[] = $detail;
+				}
+			}
+		}
+
+		return view('estimates.create', compact('estimate', 'estimate_details', 'customers', 'products', 'row_counts', 'dynamic_add_details'));
     }
 
     /**
