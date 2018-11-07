@@ -13952,9 +13952,44 @@ $(function () {
 		// increments append row counts
 		$('#row-counts').val(Number($('#row-counts').val()) + 1);
 
+		// attach event
+		row.find('.detail-quantity').change(calc_price);
+		row.find('.detail-unit-price').change(calc_price);
+		row.find('.detail-quantity').change(calc_total_price);
+		row.find('.detail-unit-price').change(calc_total_price);
+		row.find('.detail-price').change(calc_total_price);
+
 		// append to details
 		$('#detail-table-tbody').append(row);
 	});
+
+	var calc_price = function calc_price() {
+		var row = $(this).closest('tr');
+		var quantity = row.find('.detail-quantity').first();
+		var unit_price = row.find('.detail-unit-price').first();
+		var price = row.find('.detail-price').first();
+		var p = Number(quantity.val()) * Number(unit_price.val());
+		price.val(p);
+	};
+
+	var calc_total_price = function calc_total_price() {
+		var total_price = 0;
+		$('.detail-price').each(function (i, e) {
+			total_price += Number($(e).val());
+		});
+		var tax_rate = $('#tax_rate').val();
+		total_price *= 1 + tax_rate / 100;
+		$('#total_price').val(total_price);
+	};
+
+	// calc price
+	$('.detail-quantity').change(calc_price);
+	$('.detail-unit-price').change(calc_price);
+
+	// calc total price
+	$('.detail-quantity').change(calc_total_price);
+	$('.detail-unit-price').change(calc_total_price);
+	$('.detail-price').change(calc_total_price);
 });
 
 /***/ }),

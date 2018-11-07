@@ -118,7 +118,7 @@
 						name="details[{{ $detail->id }}][quantity]"
 						value="{{ old('details.' . $detail->id . '.quantity', $detail->quantity) }}"
 						id="details[{{ $detail->id }}][quantity]"
-						class="form-control form-control-sm">
+						class="form-control form-control-sm detail-quantity">
 			</td>
 			<td class="col-md-2">
 				<!-- unit_price -->
@@ -126,7 +126,7 @@
 						name="details[{{ $detail->id }}][unit_price]"
 						value="{{ old('details.' . $detail->id . '.unit_price', $detail->unit_price) }}"
 						id="details[{{ $detail->id }}][unit_price]"
-						class="form-control form-control-sm"
+						class="form-control form-control-sm detail-unit-price"
 						step="0.001">
 			</td>
 			<td class="col-md-2">
@@ -135,7 +135,7 @@
 						name="details[{{ $detail->id }}][price]"
 						value="{{ old('details.' . $detail->id . '.price', $detail->price) }}"
 						id="details[{{ $detail->id }}][price]"
-						class="form-control form-control-sm"
+						class="form-control form-control-sm detail-price"
 						step="0.001">
 			</td>
 			<td class="col-md-1">
@@ -174,7 +174,7 @@
 						name="details[{{ $detail['id'] }}][quantity]"
 						value="{{ $detail['quantity'] }}"
 						id="details[{{ $detail['id'] }}][quantity]"
-						class="form-control form-control-sm">
+						class="form-control form-control-sm detail-quantity">
 			</td>
 			<td class="col-md-2">
 				<!-- unit_price -->
@@ -182,7 +182,7 @@
 						name="details[{{ $detail['id'] }}][unit_price]"
 						value="{{ $detail['unit_price'] }}"
 						id="details[{{ $detail['id'] }}][unit_price]"
-						class="form-control form-control-sm"
+						class="form-control form-control-sm detail-unit-price"
 						step="0.001">
 			</td>
 			<td class="col-md-2">
@@ -191,7 +191,7 @@
 						name="details[{{ $detail['id'] }}][price]"
 						value="{{ $detail['price'] }}"
 						id="details[{{ $detail['id'] }}][price]"
-						class="form-control form-control-sm"
+						class="form-control form-control-sm detail-price"
 						step="0.001">
 			</td>
 			<td class="col-md-1">
@@ -229,7 +229,7 @@
 						name="details[_INDEX_VARIABLE][quantity]"
 						value=""
 						id="details[_INDEX_VARIABLE][quantity]"
-						class="form-control form-control-sm">
+						class="form-control form-control-sm detail-quantity">
 			</td>
 			<td class="col-md-2">
 				<!-- unit_price -->
@@ -237,7 +237,7 @@
 						name="details[_INDEX_VARIABLE][unit_price]"
 						value=""
 						id="details[_INDEX_VARIABLE][unit_price]"
-						class="form-control form-control-sm"
+						class="form-control form-control-sm detail-unit-price"
 						step="0.001">
 			</td>
 			<td class="col-md-2">
@@ -246,7 +246,7 @@
 						name="details[_INDEX_VARIABLE][price]"
 						value=""
 						id="details[_INDEX_VARIABLE][price]"
-						class="form-control form-control-sm"
+						class="form-control form-control-sm detail-price"
 						step="0.001">
 			</td>
 			<td class="col-md-1">
