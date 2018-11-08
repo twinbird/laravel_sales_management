@@ -102,7 +102,7 @@ class EstimatesController extends Controller
      */
     public function show($id)
     {
-		return view('estimates.show');
+		return view('estimates.show', compact('id'));
     }
 
     /**
@@ -188,4 +188,18 @@ class EstimatesController extends Controller
 				->route('estimates.index')
 				->with('message', '削除しました');
     }
+
+	/**
+	 * Show the specified estimate report
+	 *
+	 * @param int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function report($id)
+	{
+		$estimate = Estimate::find($id);
+
+		return view('estimates.report', compact('estimate'));
+	}
+
 }
