@@ -23,5 +23,6 @@
 
 		<input type="submit" class="btn btn-primary" value="登録">
 	</form>
+
 </div>
 @endsection

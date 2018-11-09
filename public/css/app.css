@@ -10476,3 +10476,8 @@ a.text-dark:focus {
   font-weight: normal;
 }
 
+#estimate-report-frame {
+  width: 210mm;
+  height: 275mm;
+}
+
