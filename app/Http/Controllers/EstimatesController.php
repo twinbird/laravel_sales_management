@@ -181,8 +181,18 @@ class EstimatesController extends Controller
      */
     public function destroy($id)
     {
-		$estimate = Estimate::find($id);
-		$estimate->delete();
+		DB::beginTransaction();
+		try {
+			$estimate = Estimate::find($id);
+			foreach ($estimate->estimate_details as $detail) {
+				$detail->delete();
+			}
+			$estimate->delete();
+		} catch (Exception $e) {
+			DB::rollback();
+			return back()->withInput();
+		}
+		DB::commit();
 
 		return redirect()
 				->route('estimates.index')
