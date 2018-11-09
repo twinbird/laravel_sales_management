@@ -103,4 +103,9 @@ $(function() {
 	$('.detail-unit-price').change(calc_total_price);
 	$('.detail-price').change(calc_total_price);
 	$('#tax_rate').change(calc_total_price);
+
+	// print estimate
+	$('#print-btn').click(function() {
+		$('#estimate-report-frame')[0].contentWindow.print();
+	});
 });
