@@ -36,7 +36,7 @@
 	<div class="form-group col-md-6 row">
 		<label for="due_date" class="col-sm-3 col-form-label">納期</label>
 		<div class="col-sm-5">
-			<input type="date" name="due_date" value="{{ old('due_date', $estimate->due_date) }}" id="due_date" class="form-control form-control-sm">
+			<input type="date" name="due_date" value="{{ old('due_date', $estimate->due_date ? $estimate->due_date->toDateString() : '') }}" id="due_date" class="form-control form-control-sm">
 		</div>
 	</div>
 	<div class="form-group col-md-6 row">
@@ -51,7 +51,7 @@
 	<div class="form-group col-md-6 row">
 		<label for="effective_date" class="col-sm-3 col-form-label">見積有効期限</label>
 		<div class="col-sm-5">
-			<input type="date" name="effective_date" value="{{ old('effective_date', $estimate->effective_date) }}" id="effective_date" class="form-control form-control-sm">
+			<input type="date" name="effective_date" value="{{ old('effective_date', $estimate->effective_date ? $estimate->effective_date->toDateString() : '') }}" id="effective_date" class="form-control form-control-sm">
 		</div>
 	</div>
 	<div class="form-group col-md-6 row">
