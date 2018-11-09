@@ -20,6 +20,8 @@ class Estimate extends Model
 
 	protected $dates = [
 		'issue_date',
+		'due_date',
+		'effective_date',
 	];
 
 	protected static function boot()

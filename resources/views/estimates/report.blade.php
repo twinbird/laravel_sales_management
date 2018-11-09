@@ -23,15 +23,15 @@
           <div id="greeting-message">下記の通り、御見積申し上げます。</div>
         </div>
   
-        <div class="left-block-elements">納期: {{ $estimate->due_date }}</div>
+        <div class="left-block-elements">納期: {{ $estimate->due_date->format('Y/m/d') }}</div>
         <div class="left-block-elements">支払条件: {{ $estimate->payment_term }}</div>
-        <div class="left-block-elements">見積有効期限: {{ $estimate->effective_date }}</div>
-        <div id="total-price">御見積金額:<span id="total-price-num" class="left-block-elements">{{ $estimate->total_price }} 円</span></div>
+        <div class="left-block-elements">見積有効期限: {{ $estimate->effective_date->format('Y/m/d') }}</div>
+        <div id="total-price">御見積金額:<span id="total-price-num" class="left-block-elements">{{ number_format($estimate->total_price) }} 円</span></div>
       </div>
   
       <div id="right-block">
         <div class="right-block-elements">見積番号: {{ $estimate->estimate_no }}</div>
-        <div class="right-block-elements">発行日: {{ $estimate->issue_date }}</div>
+        <div class="right-block-elements">発行日: {{ $estimate->issue_date->format('Y/m/d') }}</div>
     
         <div class="right-block-elements">{{ $estimate->self_company_name}}</div>
         <div class="right-block-elements">〒 {{ $estimate->self_postal_code }}</div>
@@ -58,9 +58,9 @@
           <tr>
             <td class="detail-no">{{ $loop->iteration }}</td>
             <td class="detail-item-name">{{ $detail->item_name }}</td>
-            <td class="detail-quantity">{{ $detail->quantity }}</td>
-            <td class="detail-unit-price">{{ $detail->unit_price }}</td>
-            <td class="detail-price">{{ $detail->price }}</td>
+            <td class="detail-quantity">{{ number_format($detail->quantity) }}</td>
+            <td class="detail-unit-price">{{ number_format($detail->unit_price) }}</td>
+            <td class="detail-price">{{ number_format($detail->price) }}</td>
           </tr>
 		@endforeach
 		{{-- 最低10明細は作っておく --}}
