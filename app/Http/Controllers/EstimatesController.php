@@ -82,11 +82,11 @@ class EstimatesController extends Controller
 				}
 			}
 			$estimate->estimate_details()->saveMany($details);
+			DB::commit();
 		} catch (Exception $e) {
 			DB::rollback();
 			return back()->withInput();
 		}
-		DB::commit();
 
 		return redirect()
 				->route('estimates.index')
