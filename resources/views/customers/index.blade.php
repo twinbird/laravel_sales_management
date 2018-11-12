@@ -7,6 +7,7 @@
 	<h2>顧客情報の管理</h2>
 
 	<div class="row float-right">
+		<a class="btn btn-success btn-sm mb-2" href="{{ route('customers.import_csv_form') }}">CSVからインポート</a>
 		<a class="btn btn-primary btn-sm mb-2" href="{{ url('/customers/create') }}">新しい顧客を登録</a>
 	</div>
 
