@@ -40,7 +40,7 @@ class Estimate extends Model
 		$customer = Customer::find($this->customer_id);
 		$profile = Auth()->user()->profile()->first();
 
-		$this->user_id = $user->user_id;
+		$this->user_id = $user->id;
 		$this->customer_name = $customer->name;
 		$this->estimate_no = $now_str;
 		$this->self_company_name = $profile->company_name;
