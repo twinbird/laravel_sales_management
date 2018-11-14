@@ -31,31 +31,28 @@ class Estimate extends Model
 		static::addGlobalScope('my_estimates', function($builder) {
 			$builder->where('user_id', auth()->id());
 		});
+	}
 
-		/*
-		 * before saving
-		 */
-		self::saving(function($model)
-		{
-			$now = Carbon::now();
-			$now_str = $now->format('YmdHis');
+	public function setRedundantData($user) {
+		$now = Carbon::now();
+		$now_str = $now->format('YmdHis');
 
-			$customer = Customer::find($model->customer_id);
-			$profile = Auth()->user()->profile()->first();
+		$customer = Customer::find($this->customer_id);
+		$profile = Auth()->user()->profile()->first();
 
-			$model->customer_name = $customer->name;
-			$model->estimate_no = $now_str;
-			$model->self_company_name = $profile->company_name;
-			$model->self_postal_code = $profile->postal_code;
-			$model->self_address1 = $profile->address1;
-			$model->self_address2 = $profile->address2;
-			$model->self_tel = $profile->tel;
-			$model->self_fax = $profile->fax;
-			$model->self_pic = Auth()->user()->id;
+		$this->user_id = $user->user_id;
+		$this->customer_name = $customer->name;
+		$this->estimate_no = $now_str;
+		$this->self_company_name = $profile->company_name;
+		$this->self_postal_code = $profile->postal_code;
+		$this->self_address1 = $profile->address1;
+		$this->self_address2 = $profile->address2;
+		$this->self_tel = $profile->tel;
+		$this->self_fax = $profile->fax;
+		$this->self_pic = Auth()->user()->id;
 
-			$model->tax_rate = $model->tax_rate / 100;
-			$model->total_price = $model->calc_price($model);
-		});
+		$this->tax_rate = $this->tax_rate / 100;
+		$this->total_price = $this->calc_price($this);
 	}
 
 	public function calc_price($model)

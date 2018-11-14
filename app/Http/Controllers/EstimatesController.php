@@ -71,7 +71,7 @@ class EstimatesController extends Controller
 		try {
 			$estimate = new Estimate;
 			$estimate->fill($request->all());
-			$estimate->user_id = auth()->id();
+			$estimate->setRedundantData(auth()->user());
 			$estimate->save();
 
 			$details_input = $request->get('details');
@@ -145,7 +145,7 @@ class EstimatesController extends Controller
 		try {
 			$estimate = Estimate::find($id);
 			$estimate->fill($request->all());
-			$estimate->user_id = auth()->id();
+			$estimate->setRedundantData(auth()->user());
 			$estimate->save();
 
 			$details_input = $request->get('details');

@@ -26,7 +26,6 @@ class EstimatesSeeder extends Seeder
 			'customer_id' => $test_user_customer_id,
 		])->each(function($estimate) use ($test_user_id, $test_user_product_id) {
 			factory(App\EstimateDetail::class, 5)->create([
-				'user_id' => $test_user_id,
 				'estimate_id' => $estimate->id,
 				'product_id' => $test_user_product_id,
 			]);
@@ -47,7 +46,6 @@ class EstimatesSeeder extends Seeder
 			'customer_id' => $other_user_customer_id,
 		])->each(function($estimate) use ($other_user_id, $other_user_product_id) {
 			factory(App\EstimateDetail::class, 5)->create([
-				'user_id' => $other_user_id,
 				'estimate_id' => $estimate->id,
 				'product_id' => $other_user_product_id,
 			]);
