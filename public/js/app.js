@@ -13919,6 +13919,13 @@ $(function () {
 			return;
 		}
 
+		// clear inputs
+		$(this).closest('tr').find('input').each(function (idx, e) {
+			if ($(e).attr('type') !== 'hidden') {
+				$(e).val('');
+			}
+		});
+
 		// set delete flag
 		$(this).next('input').val(1);
 

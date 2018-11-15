@@ -142,7 +142,7 @@
 				<!-- delete link -->
 				<a class="btn btn-danger btn-sm delete-row-link">削除</a>
 				<!-- delete flag -->
-				<input type="hidden" name="details[{{ $detail->id }}][is_delete]" value="{{ old('details.' . $detail->id . '.is_delete') }}">
+				<input type="hidden" name="details[{{ $detail->id }}][is_delete]" value="{{ old('details.' . $detail->id . '.is_delete') }}" class="delete-flag">
 			</td>
 		</tr>
 		@endforeach
@@ -198,7 +198,7 @@
 				<!-- delete link -->
 				<a class="btn btn-danger btn-sm delete-row-link">削除</a>
 				<!-- delete flag -->
-				<input type="hidden" name="details[{{ $detail['id'] }}][is_delete]" value="{{ $detail['is_delete'] }}">
+				<input type="hidden" name="details[{{ $detail['id'] }}][is_delete]" value="{{ $detail['is_delete'] }}" class="delete-flag">
 			</td>
 		</tr>
 		@endforeach
