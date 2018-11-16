@@ -151,7 +151,10 @@ class EstimatesController extends Controller
 			$details_input = $request->get('details');
 			$details = [];
 			$delete_detail_ids = [];
-			foreach ($details_input as $detail_input) {
+			foreach ($details_input as $key => $detail_input) {
+				if (is_numeric($key) === false ) {
+					continue;
+				}
 				if ($detail_input['is_delete']) {
 					$delete_detail_ids[] = $detail_input['id'];
 				} else {
