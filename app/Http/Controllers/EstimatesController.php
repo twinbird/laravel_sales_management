@@ -72,7 +72,6 @@ class EstimatesController extends Controller
 			$estimate = new Estimate;
 			$estimate->fill($request->all());
 			$estimate->setRedundantData(auth()->user());
-			$estimate->save();
 
 			$details_input = $request->get('details');
 			$details = [];
@@ -81,6 +80,8 @@ class EstimatesController extends Controller
 					$details[] = new EstimateDetail($detail);
 				}
 			}
+			$estimate->total_price = $estimate->calc_price($details);
+			$estimate->save();
 			$estimate->estimate_details()->saveMany($details);
 			DB::commit();
 		} catch (Exception $e) {
@@ -146,7 +147,6 @@ class EstimatesController extends Controller
 			$estimate = Estimate::find($id);
 			$estimate->fill($request->all());
 			$estimate->setRedundantData(auth()->user());
-			$estimate->save();
 
 			$details_input = $request->get('details');
 			$details = [];
@@ -163,6 +163,9 @@ class EstimatesController extends Controller
 					$details[] = $detail;
 				}
 			}
+
+			$estimate->total_price = $estimate->calc_price($details);
+			$estimate->save();
 			$estimate->estimate_details()->saveMany($details);
 			EstimateDetail::destroy($delete_detail_ids);
 		} catch (Exception $e) {

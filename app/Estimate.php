@@ -52,17 +52,16 @@ class Estimate extends Model
 		$this->self_pic = Auth()->user()->id;
 
 		$this->tax_rate = $this->tax_rate / 100;
-		$this->total_price = $this->calc_price($this);
 	}
 
-	public function calc_price($model)
+	public function calc_price($details)
 	{
 		$total_price = 0;
 
-		foreach ($model->hasMany('App\EstimateDetail')->get() as $detail) {
+		foreach ($details as $detail) {
 			$total_price += $detail->price;
 		}
-		return $total_price * (1 + $model->tax_rate);
+		return $total_price * (1 + $this->tax_rate);
 	}
 
 	/**
